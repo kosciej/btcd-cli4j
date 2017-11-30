@@ -375,5 +375,15 @@ public interface BtcdClient {
 
 	String getNodeVersion();
 
+	List<String> generate(int nblocks) throws BitcoindException,
+			CommunicationException;
+	List<String> generate(int nblocks, int maxTries) throws BitcoindException,
+			CommunicationException;
+
+	List<String> generateToAddress(int nblocks, String address) throws BitcoindException,
+			CommunicationException;
+	List<String> generateToAddress(int nblocks, String address, int maxTries) throws BitcoindException,
+			CommunicationException;
+
 	void close();
 }

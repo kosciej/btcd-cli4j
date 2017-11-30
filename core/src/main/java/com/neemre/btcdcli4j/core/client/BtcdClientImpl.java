@@ -1254,6 +1254,46 @@ public class BtcdClientImpl implements BtcdClient {
 	}
 
 	@Override
+	public List<String> generate(int nblocks)
+			throws BitcoindException, CommunicationException {
+		List<Object> params = CollectionUtils.asList(nblocks);
+		String generatedBlockHashesJson = rpcClient.execute(Commands.REGTEST_GENERATE.getName(), params);
+		List<String> generatedBlockHashes= rpcClient.getMapper().mapToList(generatedBlockHashesJson,
+				String.class);
+		return generatedBlockHashes;
+	}
+
+	@Override
+	public List<String> generate(int nblocks, int maxTries)
+			throws BitcoindException, CommunicationException {
+		List<Object> params = CollectionUtils.asList(nblocks, maxTries);
+		String generatedBlockHashesJson = rpcClient.execute(Commands.REGTEST_GENERATE.getName(), params);
+		List<String> generatedBlockHashes= rpcClient.getMapper().mapToList(generatedBlockHashesJson,
+				String.class);
+		return generatedBlockHashes;
+	}
+
+	@Override
+	public List<String> generateToAddress(int nblocks, String address)
+			throws BitcoindException, CommunicationException {
+		List<Object> params = CollectionUtils.asList(nblocks, address);
+		String generatedBlockHashesJson = rpcClient.execute(Commands.REGTEST_GENERATE_TO_ADDRESS.getName(), params);
+		List<String> generatedBlockHashes= rpcClient.getMapper().mapToList(generatedBlockHashesJson,
+				String.class);
+		return generatedBlockHashes;
+	}
+
+	@Override
+	public List<String> generateToAddress(int nblocks, String address, int maxTries)
+			throws BitcoindException, CommunicationException {
+		List<Object> params = CollectionUtils.asList(nblocks, address, maxTries);
+		String generatedBlockHashesJson = rpcClient.execute(Commands.REGTEST_GENERATE_TO_ADDRESS.getName(), params);
+		List<String> generatedBlockHashes= rpcClient.getMapper().mapToList(generatedBlockHashesJson,
+				String.class);
+		return generatedBlockHashes;
+	}
+
+	@Override
 	public synchronized void close() {
 		LOG.info(">> close(..): closing the 'bitcoind' core wrapper");
 		rpcClient.close();

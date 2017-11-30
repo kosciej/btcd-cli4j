@@ -88,7 +88,11 @@ public enum Commands {
 	VERIFY_MESSAGE("verifymessage", 3, 3),
 	WALLET_LOCK("walletlock", 0, 0),
 	WALLET_PASSPHRASE("walletpassphrase", 2, 2),
-	WALLET_PASSPHRASE_CHANGE("walletpassphrasechange", 2, 2);
+	WALLET_PASSPHRASE_CHANGE("walletpassphrasechange", 2, 2),
+	REGTEST_GENERATE("generate", 1, 2),
+	REGTEST_GENERATE_TO_ADDRESS("generatetoaddress", 2, 3);
+
+
 
 	private final String name;
 	private final int minParams;

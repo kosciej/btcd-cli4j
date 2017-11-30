@@ -2,12 +2,7 @@ package com.neemre.btcdcli4j.core.domain;
 
 import java.math.BigDecimal;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,7 +20,9 @@ import com.neemre.btcdcli4j.core.domain.enums.ChainTypes;
 public class BlockChainInfo extends Entity {
 
 	private ChainTypes chain;
-	private Integer blocks;
+	@Getter(AccessLevel.PUBLIC)
+	Integer blocks;
+	@Getter(AccessLevel.PUBLIC)
 	private Integer headers;
 	@JsonProperty("bestblockhash")
 	private String bestBlockHash;

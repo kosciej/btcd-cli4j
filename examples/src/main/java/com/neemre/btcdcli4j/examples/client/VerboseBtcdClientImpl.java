@@ -1172,6 +1172,38 @@ public class VerboseBtcdClientImpl extends BtcdClientImpl {
 	}
 
 	@Override
+	public List<String> generate(int nblocks) throws BitcoindException, CommunicationException {
+		List<String> result = super.generate(nblocks);
+		printResult(Commands.REGTEST_GENERATE.getName(), new String[]{"nblocks"},
+				new Object[]{nblocks}, result);
+		return result;
+	}
+
+	@Override
+	public List<String> generate(int nblocks, int maxTries) throws BitcoindException, CommunicationException {
+		List<String> result = super.generate(nblocks, maxTries);
+		printResult(Commands.REGTEST_GENERATE.getName(), new String[]{"nblocks", "maxTries"},
+				new Object[]{nblocks, maxTries}, result);
+		return result;
+	}
+
+	@Override
+	public List<String> generateToAddress(int nblocks, String address) throws BitcoindException, CommunicationException {
+		List<String> result = super.generateToAddress(nblocks, address);
+		printResult(Commands.REGTEST_GENERATE_TO_ADDRESS.getName(), new String[]{"nblocks", "address"},
+				new Object[]{nblocks, address}, result);
+		return result;
+	}
+
+	@Override
+	public List<String> generateToAddress(int nblocks, String address, int maxTries) throws BitcoindException, CommunicationException {
+		List<String> result = super.generateToAddress(nblocks, address, maxTries);
+		printResult(Commands.REGTEST_GENERATE_TO_ADDRESS.getName(), new String[]{"nblocks", "address", "maxTries"},
+				new Object[]{nblocks, address, maxTries}, result);
+		return result;
+	}
+
+	@Override
 	public void close() {
 		System.out.println("Closing the 'bitcoind' core wrapper");
 		super.close();
